@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MvcDemo.Models.SeguidoresViewModel>
+
+@{
+    ViewBag.Title = "Lista de Seguidores";
+}
+
+<h2>Lista de Seguidores</h2>
+
+<p>
+    @Html.ActionLink("Voltar para a Lista", "Index")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfileImageUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserIDResponse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScreenNameResponse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Verified)
+        </th>
+
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            <img src="@item.ProfileImageUrl" alt="@item.ScreenNameResponse" />
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.UserIDResponse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScreenNameResponse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Verified)
+        </td>
+
+
+
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+    </tr>
+}
+
+</table>
