@@ -30,12 +30,12 @@ namespace MvcDemo.Controllers
             };
 
 
-            // SÓ USAR EM PRODUÇÃO, POIS ELE PEGA O ENDEREÇO LOCALHOST/BEGIN E DEPOIS COMPLETE (ACTIONS) DESTE CONTROLLER
-            //string twitterCallbackUrl = Request.Url.ToString().Replace("Begin", "Complete");
-            //return await auth.BeginAuthorizationAsync(new Uri(twitterCallbackUrl));
 
-            // RODAR ESTA LINHA EM LOCALHOST E AS DUAS DECIMA REMOTAMENTE!
-            return await auth.BeginAuthorizationAsync(new Uri(ConfigurationManager.AppSettings["urlCallback"].ToString()));
+            string twitterCallbackUrl = Request.Url.ToString().Replace("Begin", "Complete");
+            return await auth.BeginAuthorizationAsync(new Uri(twitterCallbackUrl));
+
+
+            //return await auth.BeginAuthorizationAsync(new Uri(ConfigurationManager.AppSettings["urlCallback"].ToString()));
 
         }
 

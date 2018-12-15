@@ -440,7 +440,6 @@ H:\Repositories\__TwitterDev\_LinqToTwitter-MySamples\net46\MvcDemo\obj\Debug\Mv
 H:\Repositories\__TwitterDev\_LinqToTwitter-MySamples\net46\MvcDemo\obj\Debug\MvcDemo.csproj.CopyComplete
 H:\Repositories\__TwitterDev\_LinqToTwitter-MySamples\net46\MvcDemo\obj\Debug\MvcDemo.dll
 H:\Repositories\__TwitterDev\_LinqToTwitter-MySamples\net46\MvcDemo\obj\Debug\MvcDemo.pdb
-H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\bin\System.Net.Http.Extensions.xml
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\bin\MvcDemo.dll.config
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\bin\MvcDemo.dll
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\bin\MvcDemo.pdb
@@ -645,6 +644,7 @@ H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\bin\Micros
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\bin\Microsoft.Owin.Security.Twitter.xml
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\bin\Newtonsoft.Json.pdb
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\bin\Newtonsoft.Json.xml
+H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\bin\System.Net.Http.Extensions.xml
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\bin\System.Net.Http.Primitives.xml
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\bin\System.Reactive.xml
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\bin\System.Reactive.Core.xml
@@ -661,8 +661,8 @@ H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\bin\System
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\bin\System.Web.WebPages.Razor.xml
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\bin\System.Web.Optimization.xml
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\obj\Debug\MvcDemo.csproj.App.config
+H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\obj\Debug\MvcDemo.csprojAssemblyReference.cache
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\obj\Debug\MvcDemo.csproj.CoreCompileInputs.cache
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\obj\Debug\MvcDemo.csproj.CopyComplete
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\obj\Debug\MvcDemo.dll
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\obj\Debug\MvcDemo.pdb
-H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\obj\Debug\MvcDemo.csprojAssemblyReference.cache

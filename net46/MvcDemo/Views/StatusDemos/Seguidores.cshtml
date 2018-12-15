@@ -13,8 +13,8 @@
         <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Lista de Seguidores</h6>
         <p class="mg-b-25 mg-lg-b-50">Lista dos seguidores. Esses são seus amigos. Trate-os bem e seja recíproco. Só não vele dar Unfollow!</p>
 
-        <div class="table-wrapper">
-            <table id="datatableSeguidores" class="table display responsive nowrap">
+
+            <table id="flw" class="table display responsive nowrap datatableSeguidores">
                 <thead>
                     <tr>
                         <th>
@@ -67,9 +67,6 @@
 
                 </tbody>
             </table>
-        </div><!-- table-wrapper -->
-
-        <p class="tx-11 tx-uppercase tx-spacing-2 mg-t-40 mg-b-10 tx-gray-600">Javascript Code</p>
 
         <a href="/StatusDemos/Index" class="btn btn-info">Volte à Lista</a>
 
@@ -80,10 +77,9 @@
 @section Scripts {
 
     <script>
-        $(function () {
-            'use strict';
 
-            $('#datatableSeguidores').DataTable({
+
+            $('.datatableSeguidores').DataTable({
                 responsive: true,
                 language: {
                     searchPlaceholder: 'Busca...',
@@ -95,8 +91,8 @@
             // Select2
             $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
 
-        })();
 
     </script>
+
 
 }

@@ -18,62 +18,64 @@
 
 
 
-        <table class="table display responsive nowrap" id="datatableTimeline">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ImageUrl)
-                </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.ScreenName)
-                </th>
-
-
-                <th>
-                    @Html.DisplayNameFor(model => model.Text)
-                </th>
-
-            </tr>
-            @foreach (var item in Model)
-            {
+        <table class="table display responsive nowrap datatableTimeline" id="tml">
+            <thead>
                 <tr>
-                    <td class="pd-l-0-force">
-                        <img src="@item.ImageUrl" alt="@item.ScreenName" class="wd-40 rounded-circle" />
-                    </td>
-                    <td>
-                        <h6 class="tx-inverse tx-14 mg-b-0">@Html.DisplayFor(modelItem => item.ScreenName)</h6>
-                        <span class="tx-12">"@simboloArroba@Html.DisplayFor(modelItem => item.ScreenName)"</span>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Text)
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ImageUrl)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.ScreenName)
+                    </th>
+
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Text)
+                    </th>
+
                 </tr>
-            }
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="pd-l-0-force">
+                            <img src="@item.ImageUrl" alt="@item.ScreenName" class="wd-40 rounded-circle" />
+                        </td>
+                        <td>
+                            <h6 class="tx-inverse tx-14 mg-b-0">@Html.DisplayFor(modelItem => item.ScreenName)</h6>
+                            <span class="tx-12">"@simboloArroba@Html.DisplayFor(modelItem => item.ScreenName)"</span>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Text)
+                        </td>
+                    </tr>
+                }
+            </tbody>
         </table>
     </div>
 </div>
 
-
 @section Scripts {
 
     <script>
-        $(function () {
-            'use strict';
 
-            $('#datatableTimeline').DataTable({
-                responsive: true,
-                language: {
-                    searchPlaceholder: 'Search...',
-                    sSearch: '',
-                    lengthMenu: '_MENU_ items/page',
-                }
-            });
 
-            // Select2
-            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
-
+        $('.datatableTimeline').DataTable({
+            responsive: true,
+            language: {
+                searchPlaceholder: 'Busca...',
+                sSearch: '',
+                lengthMenu: '_MENU_ items/page',
+            }
         });
 
+        // Select2
+        $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+
     </script>
+
 
 }
