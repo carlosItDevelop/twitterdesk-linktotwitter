@@ -83,6 +83,8 @@ namespace MvcDemo.Controllers
             List<string> amigos = new List<string>();
             List<FollowersViewModel> fView = new List<FollowersViewModel>();
 
+                        
+
             var auth = new MvcAuthorizer
             {
                 CredentialStore = new SessionStateCredentialStore()
@@ -92,7 +94,8 @@ namespace MvcDemo.Controllers
             var seguidores =
                 await
                 (from follower in ctx.Friendship
-                 where follower.Type == FriendshipType.FollowerIDs && follower.UserID == "1068723410757435393"
+                     //where follower.Type == FriendshipType.FollowerIDs && follower.UserID == "1068723410757435393"
+                 where follower.Type == FriendshipType.FollowerIDs && follower.UserID == CredenciaisAuth.UserID.ToString()
                  select follower).SingleOrDefaultAsync();
 
             if (seguidores != null &&
@@ -117,6 +120,9 @@ namespace MvcDemo.Controllers
         [ActionName("Seguidores")]
         public async Task<ActionResult> SeguidoresAsync()
         {
+
+            var cokies = Request.Cookies["twitterdesk"];
+
             var auth = new MvcAuthorizer
             {
                 CredentialStore = new SessionStateCredentialStore()
@@ -126,27 +132,27 @@ namespace MvcDemo.Controllers
                 await
                 (from friend in ctx.Friendship
                  where friend.Type == FriendshipType.FollowersList &&
-                       friend.ScreenName == "desk_tw"
-                 select friend)
-                .SingleOrDefaultAsync();
-                        List<SeguidoresViewModel> seguidores = new List<SeguidoresViewModel>();
-                        if (friendship != null && friendship.Users != null)
+                //friend.ScreenName == "desk_tw"
+                friend.ScreenName == CredenciaisAuth.ScreenName
+                 select friend).SingleOrDefaultAsync();
+                    List<SeguidoresViewModel> seguidores = new List<SeguidoresViewModel>();
+                    if (friendship != null && friendship.Users != null)
+                    {
+                        foreach (var item in friendship.Users)
                         {
-                            foreach(var item in friendship.Users)
+                            var seguidor = new SeguidoresViewModel
                             {
-                                var seguidor = new SeguidoresViewModel
-                                {
-                                    ProfileImageUrl = item.ProfileImageUrl,
-                                    UserIDResponse = item.UserIDResponse,
-                                    ScreenNameResponse = item.ScreenNameResponse,
-                                    Description = item.Description,
-                                    Verified = item.Verified
-                                };
-                                seguidores.Add(seguidor);
-                            }
-                            return View(seguidores);
+                                ProfileImageUrl = item.ProfileImageUrl,
+                                UserIDResponse = item.UserIDResponse,
+                                ScreenNameResponse = item.ScreenNameResponse,
+                                Description = item.Description,
+                                Verified = item.Verified
+                            };
+                            seguidores.Add(seguidor);
                         }
-                        return RedirectToAction("Index", "StatusDemos");
+                        return View(seguidores);
+                    }
+                    return RedirectToAction("Index", "StatusDemos");
         }
 
 

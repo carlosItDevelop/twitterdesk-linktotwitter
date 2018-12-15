@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using LinqToTwitter;
 using MvcDemo.Models;
@@ -25,8 +26,6 @@ namespace MvcDemo.Controllers
                 {
                     ConsumerKey = ConfigurationManager.AppSettings["consumerKey"],
                     ConsumerSecret = ConfigurationManager.AppSettings["consumerSecret"]
-                    //ScreenName = "desk_tw",
-                    //UserID = "1068723410757435393"
                 }
             };
 
@@ -43,20 +42,13 @@ namespace MvcDemo.Controllers
         [ActionName("Complete")]
         public async Task<ActionResult> CompleteAsync()
         {
-            //if(Credenciais.CredencitialsToken == null) {
-                var auth = new MvcAuthorizer
-                {
-                    CredentialStore = new SessionStateCredentialStore()
-                };
-                await auth.CompleteAuthorizeAsync(Request.Url);
 
-                //var credentials = auth.CredentialStore;
-                //string oauthToken = credentials.OAuthToken;
-                //string oauthTokenSecret = credentials.OAuthTokenSecret;
-                //string screenName = credentials.ScreenName;
-                //ulong userID = credentials.UserID;
-            //}
-
+            var auth = new MvcAuthorizer
+            {
+                CredentialStore = new SessionStateCredentialStore()
+            };
+            await auth.CompleteAuthorizeAsync(Request.Url);
+            var authCredentials = auth.CredentialStore;
 
             // É assim que você acessa as credenciais após a autorização.
             // O oauthToken e oauthTokenSecret não expiram.
@@ -67,15 +59,33 @@ namespace MvcDemo.Controllers
             // consultas para evitar a necessidade de autorizar novamente.
             // Quando você tiver carregado todas as 4 credenciais, o LINQ to Twitter permitirá
             // você fazer consultas sem re-autorizar.
-
             //================================================================================
 
-            var credentials = auth.CredentialStore;
-            string oauthToken = credentials.OAuthToken;
-            string oauthTokenSecret = credentials.OAuthTokenSecret;
-            string screenName = credentials.ScreenName;
-            ulong userID = credentials.UserID;
-            //================================================================================
+            Credenciais credenciais = new Credenciais
+            {
+                ConsumerKey = authCredentials.ConsumerKey,
+                ConsumerSecret = authCredentials.ConsumerSecret,
+                OAuthToken = authCredentials.OAuthToken,
+                OAuthTokenSecret = authCredentials.OAuthTokenSecret,
+                ScreenName = authCredentials.ScreenName,
+                UserID = authCredentials.UserID
+            };
+
+            // Carreegando propriedades static da class CredenciaisAuth
+            // ========================================================
+            CredenciaisAuth.ConsumerKey = authCredentials.ConsumerKey;
+            CredenciaisAuth.ConsumerSecret = authCredentials.ConsumerSecret;
+            CredenciaisAuth.OAuthToken = authCredentials.OAuthToken;
+            CredenciaisAuth.OAuthTokenSecret = authCredentials.OAuthTokenSecret;
+            CredenciaisAuth.ScreenName = authCredentials.ScreenName;
+            CredenciaisAuth.UserID = authCredentials.UserID;
+
+            // Carreegando propriedades num Cokie
+            // ==================================
+            //HttpCookie httpcookie = new HttpCookie("twitterdesk");
+            //httpcookie.Value = credenciais.ToString();
+            //httpcookie.Expires = DateTime.Now.AddMonths(1);
+            //Response.Cookies.Add(httpcookie);
 
             return RedirectToAction("Index", "StatusDemos");
         }

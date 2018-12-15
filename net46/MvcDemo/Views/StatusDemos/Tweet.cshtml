@@ -1,38 +1,38 @@
 ﻿@model MvcDemo.Models.SendTweetViewModel
-
 @{
-    ViewBag.Title = "Tweet";
+    ViewBag.Title = "TwitterDesk - Tweetar";
 }
 
-<h2>Tweet</h2>
+<div class="br-pagebody col-12">
+    <div class="br-section-wrapper">
+        <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Tweetar com TwitterDesk App</h6>
+        <p class="mg-b-25 mg-lg-b-50">Tweetando com TwitterDesk. Trate bem seus amigos e converse à vontade. Só não vele dar Unfollow!</p>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Tweet Demo</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        <div class="form-group">
-            @Html.LabelFor(model => model.Text, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Text, new { @class = "form-control", rows = "3" })
-                @Html.ValidationMessageFor(model => model.Text)
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Text, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Text, new { @class = "form-control", rows = "3" })
+                        @Html.ValidationMessageFor(model => model.Text)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Send" class="btn btn-default" />
+                    </div>
+                </div>
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.DisplayFor(model => model.Response)
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Send" class="btn btn-default" />
-            </div>
-        </div>
-        <div class="col-md-offset-2 col-md-10">
-            @Html.DisplayFor(model => model.Response)
+        }
+        <div>
+            @Html.ActionLink("Voltar à Lista", "Index", "StatusDemos", null, new { @class = "btn btn-info" })
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>

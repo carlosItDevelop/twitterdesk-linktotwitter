@@ -4,61 +4,99 @@
     ViewBag.Title = "Lista de Seguidores";
 }
 
-<h2>Lista de Seguidores</h2>
-
-<p>
-    @Html.ActionLink("Voltar para a Lista", "Index")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ProfileImageUrl)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserIDResponse)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ScreenNameResponse)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Verified)
-        </th>
-
-
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-
-        <td>
-            <img src="@item.ProfileImageUrl" alt="@item.ScreenNameResponse" />
-        </td>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.UserIDResponse)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ScreenNameResponse)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Verified)
-        </td>
-
-
-
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>*@
-    </tr>
+@{
+    var simboloArroba = '@';
 }
 
-</table>
+<div class="br-pagebody">
+    <div class="br-section-wrapper">
+        <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Lista de Seguidores</h6>
+        <p class="mg-b-25 mg-lg-b-50">Lista dos seguidores. Esses são seus amigos. Trate-os bem e seja recíproco. Só não vele dar Unfollow!</p>
+
+        <div class="table-wrapper">
+            <table id="datatableSeguidores" class="table display responsive nowrap">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProfileImageUrl)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.ScreenNameResponse)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserIDResponse)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Verified)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td class="pd-l-0-force">
+                                <img src="@item.ProfileImageUrl" alt="@item.ScreenNameResponse" class="wd-40 rounded-circle" />
+                            </td>
+                            <td>
+                                <h6 class="tx-inverse tx-14 mg-b-0">@Html.DisplayFor(modelItem => item.ScreenNameResponse)</h6>
+                                <span class="tx-12">"@simboloArroba@Html.DisplayFor(modelItem => item.ScreenNameResponse)"</span>
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserIDResponse)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Verified)
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div><!-- table-wrapper -->
+
+        <p class="tx-11 tx-uppercase tx-spacing-2 mg-t-40 mg-b-10 tx-gray-600">Javascript Code</p>
+
+        <a href="/StatusDemos/Index" class="btn btn-info">Volte à Lista</a>
+
+    </div>
+</div>
+<!-- br-pagebody -->
+
+@section Scripts {
+
+    <script>
+        $(function () {
+            'use strict';
+
+            $('#datatableSeguidores').DataTable({
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Busca...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_ items/page',
+                }
+            });
+
+            // Select2
+            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+        })();
+
+    </script>
+
+}
