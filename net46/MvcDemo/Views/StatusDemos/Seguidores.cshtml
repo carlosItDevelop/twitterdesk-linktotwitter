@@ -14,61 +14,65 @@
         <p class="mg-b-25 mg-lg-b-50">Lista dos seguidores. Esses são seus amigos. Trate-os bem e seja recíproco. Só não vele dar Unfollow!</p>
 
 
-            <table id="flw" class="table display responsive nowrap datatableSeguidores">
-                <thead>
+        <a href="/StatusDemos/Index" class="btn btn-outline-info">Voltar para a Lista</a>
+        <br /><br />
+
+        <table id="flw" class="table display responsive nowrap datatableSeguidores">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProfileImageUrl)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.ScreenNameResponse)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserIDResponse)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Verified)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
                     <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ProfileImageUrl)
-                        </th>
 
-                        <th>
-                            @Html.DisplayNameFor(model => model.ScreenNameResponse)
-                        </th>
+                        <td class="pd-l-0-force">
+                            <img src="@item.ProfileImageUrl" alt="@item.ScreenNameResponse" class="wd-40 rounded-circle" />
+                        </td>
+                        <td>
+                            <h6 class="tx-inverse tx-14 mg-b-0">@Html.DisplayFor(modelItem => item.ScreenNameResponse)</h6>
+                            <span class="tx-12">"@simboloArroba@Html.DisplayFor(modelItem => item.ScreenNameResponse)"</span>
+                        </td>
 
-                        <th>
-                            @Html.DisplayNameFor(model => model.UserIDResponse)
-                        </th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserIDResponse)
+                        </td>
 
-                        <th>
-                            @Html.DisplayNameFor(model => model.Description)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Verified)
-                        </th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Verified)
+                        </td>
+
                     </tr>
-                </thead>
-                <tbody>
+                }
 
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-
-                            <td class="pd-l-0-force">
-                                <img src="@item.ProfileImageUrl" alt="@item.ScreenNameResponse" class="wd-40 rounded-circle" />
-                            </td>
-                            <td>
-                                <h6 class="tx-inverse tx-14 mg-b-0">@Html.DisplayFor(modelItem => item.ScreenNameResponse)</h6>
-                                <span class="tx-12">"@simboloArroba@Html.DisplayFor(modelItem => item.ScreenNameResponse)"</span>
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.UserIDResponse)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Description)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Verified)
-                            </td>
-
-                        </tr>
-                    }
-
-                </tbody>
-            </table>
-
-        <a href="/StatusDemos/Index" class="btn btn-info">Volte à Lista</a>
+            </tbody>
+        </table>
+        <br />
+        <a href="/StatusDemos/Index" class="btn btn-outline-info">Voltar para a Lista</a>
+        <br />
 
     </div>
 </div>
