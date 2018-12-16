@@ -1,0 +1,113 @@
+﻿@model IEnumerable<MvcDemo.Models.TrendsLocatorViewModel>
+
+@{
+    ViewBag.Title = "Trends Locator";
+}
+
+<div class="br-pagebody col-12">
+    <div class="br-section-wrapper col-12">
+        <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Dados Geográficos dos TrendsTopcs</h6>
+        <p class="mg-b-25 mg-lg-b-50">TrendsTopics - Entenda como funciona as localizações dos TrendsTopics. Só não vele dar Unfollow!</p>
+
+
+        <a href="/StatusDemos/Index" class="btn btn-outline-info">Voltar para a Lista</a>
+        <br /><br />
+
+
+        <table class="table display responsive nowrap datatableTrendsLocator" id="tltr">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WoeID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Url)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Country)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CountryCode)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ParentID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PlaceTypeName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PlaceTypeNameCode)
+                    </th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WoeID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.Url)*@
+
+                            <img src="@item.Url" alt="@item.Name" class="wd-40 rounded-circle" />
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Country)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CountryCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ParentID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PlaceTypeName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PlaceTypeNameCode)
+                        </td>
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        <a href="/StatusDemos/Index" class="btn btn-outline-info">Voltar para a Lista</a>
+        <br />
+
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script>
+
+
+        $('.datatableTrendsLocator').DataTable({
+            responsive: true,
+            language: {
+                searchPlaceholder: 'Busca...',
+                sSearch: '',
+                lengthMenu: '_MENU_ items/page',
+            }
+        });
+
+        // Select2
+        $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+
+    </script>
+
+}
