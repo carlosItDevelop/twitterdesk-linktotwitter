@@ -80,12 +80,12 @@ namespace MvcDemo.Controllers
             CredenciaisAuth.ScreenName = authCredentials.ScreenName;
             CredenciaisAuth.UserID = authCredentials.UserID;
 
-            // Carreegando propriedades num Cokie
-            // ==================================
-            //HttpCookie httpcookie = new HttpCookie("twitterdesk");
-            //httpcookie.Value = credenciais.ToString();
-            //httpcookie.Expires = DateTime.Now.AddMonths(1);
-            //Response.Cookies.Add(httpcookie);
+            //Carreegando propriedades num Cokie
+            //==================================
+            HttpCookie httpcookie = new HttpCookie("twitterdesk");
+            httpcookie.Value = credenciais.ToString();
+            httpcookie.Expires = DateTime.Now.AddMonths(1);
+            Response.Cookies.Add(httpcookie);
 
             return RedirectToAction("Index", "StatusDemos");
         }

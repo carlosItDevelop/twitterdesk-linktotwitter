@@ -661,7 +661,6 @@ H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\bin\System
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\bin\System.Web.WebPages.Razor.xml
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\bin\System.Web.Optimization.xml
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\obj\Debug\MvcDemo.csproj.App.config
-H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\obj\Debug\MvcDemo.csprojAssemblyReference.cache
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\obj\Debug\MvcDemo.csproj.CoreCompileInputs.cache
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\obj\Debug\MvcDemo.csproj.CopyComplete
 H:\Repositories\__TwitterDev\_LinqToTwitter-TwitterDesk\net46\MvcDemo\obj\Debug\MvcDemo.dll

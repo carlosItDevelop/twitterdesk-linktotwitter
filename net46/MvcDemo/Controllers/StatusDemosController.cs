@@ -5,6 +5,8 @@ using System.Web.Mvc;
 using MvcDemo.Models;
 using LinqToTwitter;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace MvcDemo.Controllers
 {
@@ -83,7 +85,7 @@ namespace MvcDemo.Controllers
             List<string> amigos = new List<string>();
             List<FollowersViewModel> fView = new List<FollowersViewModel>();
 
-                        
+
 
             var auth = new MvcAuthorizer
             {
@@ -94,7 +96,6 @@ namespace MvcDemo.Controllers
             var seguidores =
                 await
                 (from follower in ctx.Friendship
-                     //where follower.Type == FriendshipType.FollowerIDs && follower.UserID == "1068723410757435393"
                  where follower.Type == FriendshipType.FollowerIDs && follower.UserID == CredenciaisAuth.UserID.ToString()
                  select follower).SingleOrDefaultAsync();
 
@@ -121,7 +122,6 @@ namespace MvcDemo.Controllers
         public async Task<ActionResult> SeguidoresAsync()
         {
 
-            var cokies = Request.Cookies["twitterdesk"];
 
             var auth = new MvcAuthorizer
             {
@@ -135,24 +135,102 @@ namespace MvcDemo.Controllers
                 //friend.ScreenName == "desk_tw"
                 friend.ScreenName == CredenciaisAuth.ScreenName
                  select friend).SingleOrDefaultAsync();
-                    List<SeguidoresViewModel> seguidores = new List<SeguidoresViewModel>();
-                    if (friendship != null && friendship.Users != null)
+            List<SeguidoresViewModel> seguidores = new List<SeguidoresViewModel>();
+            if (friendship != null && friendship.Users != null)
+            {
+                foreach (var item in friendship.Users)
+                {
+                    var seguidor = new SeguidoresViewModel
                     {
-                        foreach (var item in friendship.Users)
-                        {
-                            var seguidor = new SeguidoresViewModel
-                            {
-                                ProfileImageUrl = item.ProfileImageUrl,
-                                UserIDResponse = item.UserIDResponse,
-                                ScreenNameResponse = item.ScreenNameResponse,
-                                Description = item.Description,
-                                Verified = item.Verified
-                            };
-                            seguidores.Add(seguidor);
-                        }
-                        return View(seguidores);
-                    }
-                    return RedirectToAction("Index", "StatusDemos");
+                        ProfileImageUrl = item.ProfileImageUrl,
+                        UserIDResponse = item.UserIDResponse,
+                        ScreenNameResponse = item.ScreenNameResponse,
+                        Description = item.Description,
+                        Verified = item.Verified
+                    };
+                    seguidores.Add(seguidor);
+                }
+
+                //var jsonSeguidores = JsonConvert.SerializeObject(friendship);
+                //var jsonSeguidoresUser = JsonConvert.SerializeObject(seguidores);
+
+                return View(seguidores);
+            }
+            return RedirectToAction("Index", "StatusDemos");
+        }
+
+
+        [ActionName("TrendsLocator")]
+        public async Task<ActionResult> TrendsLocatorAsync()
+        {
+
+            // WoeID=>Brazil = 23424768
+
+            var cokies = Request.Cookies["twitterdesk"];
+            var cookieCollection = cokies.Value;
+            var jsonTrendsLocator = JsonConvert.DeserializeObject(cookieCollection);
+
+
+            var auth = new MvcAuthorizer
+            {
+                CredentialStore = new SessionStateCredentialStore()
+            };
+            var ctx = new TwitterContext(auth);
+
+            var trendsResponse =
+                            await
+                            (from trend in ctx.Trends
+                             where trend.Type == TrendType.Available
+                             select trend)
+                            .SingleOrDefaultAsync();
+
+            List<TrendsLocatorViewModel> listaLocator = new List<TrendsLocatorViewModel>();
+            if (trendsResponse != null && trendsResponse.Locations != null)
+            {
+                foreach (var item in trendsResponse.Locations)
+                {
+                    var trendsloc = new TrendsLocatorViewModel
+                    {
+                        WoeID = item.WoeID,
+                        Name = item.Name,
+                        Url = item.Url,
+                        Country = item.Country,
+                        CountryCode = item.CountryCode,
+                        ParentID = item.ParentID,
+                        PlaceTypeName = item.PlaceTypeName,
+                        PlaceTypeNameCode = item.PlaceTypeNameCode
+                    };
+                    listaLocator.Add(trendsloc);
+                }
+            }
+
+            return View(listaLocator);
+        }
+
+        [ActionName("TrendTopics")]
+        public async Task<ActionResult> TrendTopicsAsync()
+        {
+            var auth = new MvcAuthorizer
+            {
+                CredentialStore = new SessionStateCredentialStore()
+            };
+            var ctx = new TwitterContext(auth);
+
+            var trend =
+                await
+                (from trnd in ctx.Trends
+                 where trnd.Type == TrendType.Closest &&
+                        trnd.WoeID == 23424768
+                 select trnd)
+                .SingleOrDefaultAsync();
+
+            if (trend != null && trend.Locations != null)
+                trend.Locations.ForEach(
+                    loc => Debug.WriteLine(
+                        "Name: {0}, Country: {1}, WoeID: {2}",
+                        loc.Name, loc.Country, loc.WoeID));
+
+            return View("Index");
         }
 
 
