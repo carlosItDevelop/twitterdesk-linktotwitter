@@ -7,23 +7,25 @@ using LinqToTwitter;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using MvcDemo.Services;
 
 namespace MvcDemo.Controllers
 {
     public class StatusDemosController : Controller
     {
 
-        #region: todos meno seguidores
         public ActionResult Index()
         {
             return View();
         }
 
+        #region: Tweet
+
         public ActionResult Tweet()
         {
             var sendTweetVM = new SendTweetViewModel
             {
-                Text = "Testing async LINQ to Twitter in MVC - " + DateTime.Now.ToString()
+                Text = "Tweetado por: @" + CredenciaisAuth.ScreenName + ", TwitterDesk / ApsNetMVC. às " + DateTime.Now.ToString()
             };
 
             return View(sendTweetVM);
@@ -51,6 +53,10 @@ namespace MvcDemo.Controllers
             return View(responseTweetVM);
         }
 
+        #endregion
+
+        #region: Home
+
         [ActionName("HomeTimeline")]
         public async Task<ActionResult> HomeTimelineAsync()
         {
@@ -76,8 +82,9 @@ namespace MvcDemo.Controllers
             return View(tweets);
         }
 
+        #endregion
 
-
+        #region: ListingFollowers
 
         [ActionName("ListingFollowers")]
         public async Task<ActionResult> ListingFollowersAsync()
@@ -117,6 +124,7 @@ namespace MvcDemo.Controllers
 
         #endregion
 
+        #region: Seguidores
 
         [ActionName("Seguidores")]
         public async Task<ActionResult> SeguidoresAsync()
@@ -138,6 +146,10 @@ namespace MvcDemo.Controllers
             List<SeguidoresViewModel> seguidores = new List<SeguidoresViewModel>();
             if (friendship != null && friendship.Users != null)
             {
+
+                UserServices userServices = new UserServices();
+                userServices.GetListaDeUsuarios(friendship.Users);
+
                 foreach (var item in friendship.Users)
                 {
                     var seguidor = new SeguidoresViewModel
@@ -146,7 +158,14 @@ namespace MvcDemo.Controllers
                         UserIDResponse = item.UserIDResponse,
                         ScreenNameResponse = item.ScreenNameResponse,
                         Description = item.Description,
-                        Verified = item.Verified
+                        Verified = item.Verified,
+                        Name = item.Name,
+                        Protected = item.Protected,
+                        FriendsCount = item.FriendsCount,
+                        FollowersCount = item.FollowersCount,
+                        Following = item.Following,
+                        ShowAllInlineMedia = item.ShowAllInlineMedia,
+                        LangResponse = item.LangResponse
                     };
                     seguidores.Add(seguidor);
                 }
@@ -159,6 +178,9 @@ namespace MvcDemo.Controllers
             return RedirectToAction("Index", "StatusDemos");
         }
 
+        #endregion
+
+        #region: TrendLocator
 
         [ActionName("TrendsLocator")]
         public async Task<ActionResult> TrendsLocatorAsync()
@@ -207,6 +229,10 @@ namespace MvcDemo.Controllers
             return View(listaLocator);
         }
 
+        #endregion
+
+        #region: TrendTopics
+
         [ActionName("TrendTopics")]
         public async Task<ActionResult> TrendTopicsAsync()
         {
@@ -216,7 +242,8 @@ namespace MvcDemo.Controllers
             };
             var ctx = new TwitterContext(auth);
 
-            var trends = await (from trend in ctx.Trends where trend.Type == TrendType.Place && trend.WoeID == 23424768
+            var trends = await (from trend in ctx.Trends
+                                where trend.Type == TrendType.Place && trend.WoeID == 23424768
                                 select trend).ToListAsync();
 
             List<TrendsViewModel> trendsViewModels = new List<TrendsViewModel>();
@@ -241,26 +268,40 @@ namespace MvcDemo.Controllers
                 };
                 trendsViewModels.Add(tempModel);
             }
-            
-            
-            //var jsonTrends = JsonConvert.SerializeObject(trends);  => Muito Bom!
-            //if (trends != null &&
-            //    trends.Any() &&
-            //    trends.First().Locations != null)
-            //{
-            //    Debug.WriteLine(
-            //        "Location: {0}\n",
-            //        trends.First().Locations.First().Name);
-
-            //    trends.ForEach(trnd =>
-            //        Debug.WriteLine(
-            //            "Name: {0}, Date: {1}, Query: {2}\nSearch {3}",
-            //            trnd.Name, trnd.CreatedAt, trnd.Query, trnd.SearchUrl));
-            //}
 
             return View(trendsViewModels);
         }
 
+        #endregion
+
+        #region: Seguir
+
+        public async Task<ActionResult> Seguir(ulong userID, bool follow)
+        {
+            var auth = new MvcAuthorizer
+            {
+                CredentialStore = new SessionStateCredentialStore()
+            };
+            var ctx = new TwitterContext(auth);
+
+            var user = await ctx.CreateFriendshipAsync(userID, follow);
+
+            if (user != null && user.Status != null)
+                Console.WriteLine(
+                    "User Name: {0}, Status: {1}",
+                    user.Name,
+                    user.Status.Text);
+
+            return View();
+        }
+
+        //public async Task<User> CreateFriendshipAsync(ulong userID, bool follow)
+        //{
+        //}
+
+        #endregion
+
+        #region: UploadImage
 
         [ActionName("UploadImage")]
         public async Task<ActionResult> UploadImageAsync()
@@ -299,5 +340,8 @@ namespace MvcDemo.Controllers
                     Text = tweet.Text
                 });
         }
+
+        #endregion
+
     }
 }

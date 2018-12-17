@@ -17,59 +17,67 @@
         <a href="/StatusDemos/Index" class="btn btn-outline-info">Voltar para a Lista</a>
         <br /><br />
 
-        <table id="flw" class="table display responsive nowrap datatableSeguidores">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ProfileImageUrl)
-                    </th>
+              <table id="flw" class="table display responsive datatableSeguidores">
+                  <thead>
+                      <tr>
+                          <th>@Html.DisplayNameFor(model => model.ProfileImageUrl)</th>
 
-                    <th>
-                        @Html.DisplayNameFor(model => model.ScreenNameResponse)
-                    </th>
+                          <th>@Html.DisplayNameFor(model => model.ScreenNameResponse)</th>
 
-                    <th>
-                        @Html.DisplayNameFor(model => model.UserIDResponse)
-                    </th>
+                          @*<th>
+                              @Html.DisplayNameFor(model => model.UserIDResponse)
+                          </th>*@
 
-                    <th>
-                        @Html.DisplayNameFor(model => model.Description)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Verified)
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
+                          <th>@Html.DisplayNameFor(model => model.Description)</th>
 
-                @foreach (var item in Model)
-                {
-                    <tr>
+                          <th>@Html.DisplayNameFor(model => model.FriendsCount) / @Html.DisplayNameFor(model => model.FollowersCount)</th>
 
-                        <td class="pd-l-0-force">
-                            <img src="@item.ProfileImageUrl" alt="@item.ScreenNameResponse" class="wd-40 rounded-circle" />
-                        </td>
-                        <td>
-                            <h6 class="tx-inverse tx-14 mg-b-0">@Html.DisplayFor(modelItem => item.ScreenNameResponse)</h6>
-                            <span class="tx-12">"@simboloArroba@Html.DisplayFor(modelItem => item.ScreenNameResponse)"</span>
-                        </td>
+                          <th>@Html.DisplayNameFor(model => model.Following)</th>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.UserIDResponse)
-                        </td>
+                          <td>@Html.DisplayNameFor(model => model.Protected)</td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Verified)
-                        </td>
+                          <th>@Html.DisplayNameFor(model => model.Verified)</th>
+                      </tr>
+                  </thead>
 
-                    </tr>
-                }
+                            @*/*
+                                    [DisplayName("Media Liberada")]
+                                    public bool ShowAllInlineMedia { get; set; }
+                                    [DisplayName("Linguagem")]
+                                    public string LangResponse { get; set; }
 
-            </tbody>
-        </table>
+                            */*@
+                  <tbody>
+
+                      @foreach (var item in Model)
+                      {
+                          <tr>
+
+                              <td class="pd-l-0-force"><img src="@item.ProfileImageUrl" alt="@item.ScreenNameResponse" class="wd-40 rounded-circle" /></td>
+                              <td>
+                                  <h6 class="tx-inverse tx-14 mg-b-0">"@Html.DisplayFor(modelItem => item.Name)"</h6>
+                                  <span class="tx-12">@simboloArroba@Html.DisplayFor(modelItem => item.ScreenNameResponse)</span>
+                              </td>
+
+                              @*<td>
+                                  @Html.DisplayFor(modelItem => item.UserIDResponse)
+                              </td>*@
+
+                              <td>@Html.DisplayFor(modelItem => item.Description)</td>
+
+                              <td>@Html.DisplayFor(modelItem => item.FriendsCount) / @Html.DisplayFor(modelItem => item.FollowersCount)</td>
+
+                              <td>@Html.DisplayFor(modelItem => item.Following)</td>
+
+                              <td>@Html.DisplayFor(modelItem => item.Protected)</td>
+
+                              <td>@Html.DisplayFor(modelItem => item.Verified)</td>
+
+                          </tr>
+                      }
+
+                  </tbody>
+              </table>
         <br />
         <a href="/StatusDemos/Index" class="btn btn-outline-info">Voltar para a Lista</a>
         <br />
@@ -81,16 +89,17 @@
 @section Scripts {
 
     <script>
-            $('.datatableSeguidores').DataTable({
-                responsive: true,
-                language: {
-                    searchPlaceholder: 'Busca...',
-                    sSearch: '',
-                    lengthMenu: '_MENU_ items/page',
-                }
-            });
+        $('.datatableSeguidores').DataTable({
+            responsive: true,
+            language: {
+                searchPlaceholder: 'Busca...',
+                sSearch: '',
+                lengthMenu: '_MENU_ Itens por Página',
+            }
+        });
 
-            // Select2
-            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+        // Select2
+        $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
     </script>
 }
+

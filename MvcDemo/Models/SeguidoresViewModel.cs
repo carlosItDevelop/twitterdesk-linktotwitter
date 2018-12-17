@@ -24,5 +24,26 @@ namespace MvcDemo.Models
         [DataType(DataType.ImageUrl)]
         public string ProfileImageUrl { get; set; }
 
+        [DisplayName("Nome")]
+        public string Name { get; set; }
+
+        [DisplayName("Fechado")]
+        public bool Protected { get; set; }
+
+        [DisplayName("Seguindo")]
+        public int FriendsCount { get; set; }
+
+        [DisplayName("Seguido")]
+        public int FollowersCount { get; set; }
+
+        [DisplayName("Sigo")]
+        public bool Following { get; set; }
+
+        [DisplayName("Media Liberada")]
+        public bool ShowAllInlineMedia { get; set; }
+
+        [DisplayName("Linguagem")]
+        public string LangResponse { get; set; }
+
     }
 }

@@ -14,7 +14,7 @@
         <br /><br />
 
 
-        <table class="table display responsive nowrap datatableTrendsLocator" id="tltr">
+        <table class="table display responsive datatableTrendsLocator" id="tltr">
             <thead>
                 <tr>
                     <th>
@@ -91,23 +91,17 @@
 
 
 @section Scripts {
-
     <script>
-
-
         $('.datatableTrendsLocator').DataTable({
             responsive: true,
             language: {
                 searchPlaceholder: 'Busca...',
                 sSearch: '',
-                lengthMenu: '_MENU_ items/page',
+                lengthMenu: '_MENU_ Itens por Página',
             }
         });
 
         // Select2
         $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
-
-
     </script>
-
 }

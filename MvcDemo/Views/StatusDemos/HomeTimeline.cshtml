@@ -20,7 +20,7 @@
 
 
 
-        <table class="table display responsive nowrap datatableTimeline" id="tml">
+        <table class="table display responsive datatableTimeline" id="tml">
             <thead>
                 <tr>
                     <th>
@@ -46,8 +46,8 @@
                             <img src="@item.ImageUrl" alt="@item.ScreenName" class="wd-40 rounded-circle" />
                         </td>
                         <td>
-                            <h6 class="tx-inverse tx-14 mg-b-0">@Html.DisplayFor(modelItem => item.ScreenName)</h6>
-                            <span class="tx-12">"@simboloArroba@Html.DisplayFor(modelItem => item.ScreenName)"</span>
+                            <h6 class="tx-inverse tx-14 mg-b-0">"@Html.DisplayFor(modelItem => item.ScreenName)"</h6>
+                            <span class="tx-12">@simboloArroba@Html.DisplayFor(modelItem => item.ScreenName)</span>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Text)
@@ -60,24 +60,17 @@
 </div>
 
 @section Scripts {
-
     <script>
-
-
         $('.datatableTimeline').DataTable({
             responsive: true,
             language: {
                 searchPlaceholder: 'Busca...',
                 sSearch: '',
-                lengthMenu: '_MENU_ items/page',
+                lengthMenu: '_MENU_ Itens por Página',
             }
         });
 
         // Select2
         $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
-
-
     </script>
-
-
 }
