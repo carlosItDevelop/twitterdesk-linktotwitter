@@ -33,7 +33,7 @@ namespace MvcDemo.Models
         [DisplayName("Seguindo")]
         public int FriendsCount { get; set; }
 
-        [DisplayName("Seguido")]
+        [DisplayName("Seguidores")]
         public int FollowersCount { get; set; }
 
         [DisplayName("Sigo")]

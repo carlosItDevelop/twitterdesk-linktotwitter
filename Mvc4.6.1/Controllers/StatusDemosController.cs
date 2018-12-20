@@ -276,23 +276,25 @@ namespace MvcDemo.Controllers
 
         #region: Seguir
 
-        public async Task<ActionResult> Seguir(ulong userID, bool follow)
+        [ActionName("Seguir")]
+        public async Task<ActionResult> SeguirAsync(string ScreenName)
         {
-            var auth = new MvcAuthorizer
-            {
-                CredentialStore = new SessionStateCredentialStore()
-            };
-            var ctx = new TwitterContext(auth);
 
-            var user = await ctx.CreateFriendshipAsync(userID, follow);
+                var auth = new MvcAuthorizer
+                {
+                    CredentialStore = new SessionStateCredentialStore()
+                };
+                var ctx = new TwitterContext(auth);
+                var user = await ctx.CreateFriendshipAsync(ScreenName, true);
 
-            if (user != null && user.Status != null)
-                Console.WriteLine(
-                    "User Name: {0}, Status: {1}",
-                    user.Name,
-                    user.Status.Text);
+                if (user != null && user.Status != null)
+                    Debug.WriteLine(
+                        "User Name: {0}, Status: {1}, Seguindo: {2}",
+                        user.Name,
+                        user.Status.Text,
+                        user.Following);
 
-            return View();
+            return RedirectToAction("Seguidores","StatusDemos");
         }
 
         //public async Task<User> CreateFriendshipAsync(ulong userID, bool follow)

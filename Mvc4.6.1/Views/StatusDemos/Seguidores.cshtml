@@ -17,78 +17,101 @@
         <a href="/StatusDemos/Index" class="btn btn-outline-info">Voltar para a Lista</a>
         <br /><br />
 
-              <table id="flw" class="table display responsive datatableSeguidores">
-                  <thead>
-                      <tr>
-                          <th>@Html.DisplayNameFor(model => model.ProfileImageUrl)</th>
+        <table id="flw" class="table display responsive datatableSeguidores">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.ProfileImageUrl)</th>
 
-                          <th>@Html.DisplayNameFor(model => model.ScreenNameResponse)</th>
+                    <th>@Html.DisplayNameFor(model => model.ScreenNameResponse)</th>
 
-                          @*<th>
-                              @Html.DisplayNameFor(model => model.UserIDResponse)
-                          </th>*@
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
 
-                          <th>@Html.DisplayNameFor(model => model.Description)</th>
+                    <th>@Html.DisplayNameFor(model => model.FriendsCount) / @Html.DisplayNameFor(model => model.FollowersCount)</th>
 
-                          <th>@Html.DisplayNameFor(model => model.FriendsCount) / @Html.DisplayNameFor(model => model.FollowersCount)</th>
+                    <th>@Html.DisplayNameFor(model => model.Following)</th>
 
-                          <th>@Html.DisplayNameFor(model => model.Following)</th>
+                    <td>@Html.DisplayNameFor(model => model.Protected)</td>
 
-                          <td>@Html.DisplayNameFor(model => model.Protected)</td>
+                    <th>@Html.DisplayNameFor(model => model.Verified)</th>
+                </tr>
+            </thead>
 
-                          <th>@Html.DisplayNameFor(model => model.Verified)</th>
-                      </tr>
-                  </thead>
+            @*/*
+                        [DisplayName("Media Liberada")]
+                        public bool ShowAllInlineMedia { get; set; }
+                        [DisplayName("Linguagem")]
+                        public string LangResponse { get; set; }
 
-                            @*/*
-                                    [DisplayName("Media Liberada")]
-                                    public bool ShowAllInlineMedia { get; set; }
-                                    [DisplayName("Linguagem")]
-                                    public string LangResponse { get; set; }
+                */*@
+            <tbody>
 
-                            */*@
-                  <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
 
-                      @foreach (var item in Model)
-                      {
-                          <tr>
+                        <td class="pd-l-0-force"><img src="@item.ProfileImageUrl" alt="@item.ScreenNameResponse" class="wd-40 rounded-circle" /></td>
+                        <td>
+                            <h6 class="tx-inverse tx-14 mg-b-0">"@Html.DisplayFor(modelItem => item.Name)"</h6>
+                            <span class="tx-12">@simboloArroba@Html.DisplayFor(modelItem => item.ScreenNameResponse)</span>
+                        </td>
 
-                              <td class="pd-l-0-force"><img src="@item.ProfileImageUrl" alt="@item.ScreenNameResponse" class="wd-40 rounded-circle" /></td>
-                              <td>
-                                  <h6 class="tx-inverse tx-14 mg-b-0">"@Html.DisplayFor(modelItem => item.Name)"</h6>
-                                  <span class="tx-12">@simboloArroba@Html.DisplayFor(modelItem => item.ScreenNameResponse)</span>
-                              </td>
+                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
 
-                              @*<td>
-                                  @Html.DisplayFor(modelItem => item.UserIDResponse)
-                              </td>*@
+                        <td>@Html.DisplayFor(modelItem => item.FriendsCount) / @Html.DisplayFor(modelItem => item.FollowersCount)</td>
 
-                              <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                        <td>
+                            @if (!item.Following)
+                            {
+                                var ScreenName = @item.ScreenNameResponse;
+                                <a href="/StatusDemos/Seguir?ScreenName=@ScreenName" name=@item.ScreenNameResponse class="btn btn-outline-light">Seguir</a>
+                            }
+                            else
+                            {
+                                <a href="#" class="btn btn-outline-info">Seguindo</a>
+                                @*@Html.DisplayFor(modelItem => item.Following)*@
+                            }
+                        </td>
 
-                              <td>@Html.DisplayFor(modelItem => item.FriendsCount) / @Html.DisplayFor(modelItem => item.FollowersCount)</td>
+                        <td>
+                            @if (!item.Protected)
+                            {
+                                <div>Não</div>
+                            }
+                            else
+                            {
+                                <div><strong>Sim</strong></div>
+                            }
+                        </td>
 
-                              <td>@Html.DisplayFor(modelItem => item.Following)</td>
+                        <td>
+                            @if (!item.Verified)
+                            {
+                                <div>Não</div>
+                            }
+                            else
+                            {
+                                <div><strong>Sim</strong></div>
+                            }
+                        </td>
 
-                              <td>@Html.DisplayFor(modelItem => item.Protected)</td>
+                    </tr>
+                }
 
-                              <td>@Html.DisplayFor(modelItem => item.Verified)</td>
-
-                          </tr>
-                      }
-
-                  </tbody>
-              </table>
+            </tbody>
+        </table>
         <br />
         <a href="/StatusDemos/Index" class="btn btn-outline-info">Voltar para a Lista</a>
         <br />
 
     </div>
 </div>
-<!-- br-pagebody -->
 
-@section Scripts {
 
-    <script>
+
+
+@section Scripts
+{
+<script>
         $('.datatableSeguidores').DataTable({
             responsive: true,
             language: {
@@ -100,6 +123,44 @@
 
         // Select2
         $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
-    </script>
+
+
+        //$("#seguir").click(function () {
+        //    var userid = $(this).attr("data-userid");
+        //    $("#modal").load("/StatusDemos/Seguir?id=" + userid + "&follow=" + true, function () {
+        //        $("#modal").modal();
+        //    });
+        //});
+
+
+        //this.seguir = function () {
+        //    var response = $http({
+        //        method: "GET",
+        //        url: "/StatusDemos/Seguir/",
+        //        params:
+        //        {
+        //            userid,
+        //            true
+        //        }
+        //    });
+        //    return response;
+        //}
+
+
+        @*@Scripts.Render("~/bundles/core")
+            @Scripts.Render("~/bundles/datatableswithtools");
+
+            <script>
+                $(document).ready(function () {
+                    $('.evolumed').DataTable({
+                        dom: 'T<"clear">lfrtip',
+                        tableTools: {
+                            "sSwfPath": "../../myPlugins/copy_csv_xls_pdf.swf"
+                        }
+                    });
+                });
+            </script>*@
+
+</script>
 }
 
