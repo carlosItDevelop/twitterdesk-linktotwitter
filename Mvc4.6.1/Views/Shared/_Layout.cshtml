@@ -47,8 +47,14 @@
     <link href="~/lib/jquery-switchbutton/jquery.switchButton.css" rel="stylesheet">
     <link href="~/lib/rickshaw/rickshaw.min.css" rel="stylesheet">
     <link href="~/lib/chartist/chartist.css" rel="stylesheet">
-
     <!-- vendor css // data-tables -->
+
+
+    @* cas styles *@
+    <link href="~/css/twitterDesk.css" rel="stylesheet">
+    @* cas styles *@
+
+
 
     <link href="~/lib/highlightjs/github.css" rel="stylesheet">
     <link href="~/lib/datatables/jquery.dataTables.css" rel="stylesheet">
@@ -873,52 +879,75 @@
         <div class="br-pagebody mg-t-5 pd-x-30">
             <div class="row row-sm">
                 <div class="col-sm-6 col-xl-3">
-                    <div class="bg-teal rounded overflow-hidden">
-                        <div class="pd-25 d-flex align-items-center">
-                            <i class="ion ion-forward tx-60 lh-0 tx-white op-7"></i>
-                            <div class="mg-l-20">
-                                <p class="tx-15 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Seus Seguidores</p>
-                                <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">1,975,224</p>
-                                <span class="tx-14 tx-roboto tx-white-6">24% a mais que ontem</span>
+
+                    <a href="#">
+
+                        <div class="bg-teal rounded overflow-hidden">
+                            <div class="pd-25 d-flex align-items-center">
+                                <i class="ion ion-forward tx-60 lh-0 tx-white op-7"></i>
+                                <div class="mg-l-20">
+                                    <p class="tx-15 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Seus Seguidores</p>
+                                    <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">1,975,224</p>
+                                    <span class="tx-14 tx-roboto tx-white-6">24% a mais que ontem</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                    </a>
+
                 </div><!-- col-3 -->
                 <div class="col-sm-6 col-xl-3 mg-t-20 mg-sm-t-0">
-                    <div class="bg-danger rounded overflow-hidden">
-                        <div class="pd-25 d-flex align-items-center">
-                            <i class="ion ion-backspace tx-60 lh-0 tx-white op-7"></i>
-                            <div class="mg-l-20">
-                                <p class="tx-15 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Novos Unfollowers</p>
-                                <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">329,291</p>
-                                <span class="tx-14 tx-roboto tx-white-6">Nos últimos 2 dias</span>
+
+                    <a href="#">
+                        <div class="bg-danger rounded overflow-hidden">
+                            <div class="pd-25 d-flex align-items-center">
+                                <i class="ion ion-backspace tx-60 lh-0 tx-white op-7"></i>
+                                <div class="mg-l-20">
+                                    <p class="tx-15 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Novos Unfollowers</p>
+                                    <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">329,291</p>
+                                    <span class="tx-14 tx-roboto tx-white-6">Nos últimos 2 dias</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
+
+                </div><!-- col-3 -->
+
+                <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+
+                    <a href="#">
+
+                        <div class="bg-primary rounded overflow-hidden">
+                            <div class="pd-25 d-flex align-items-center">
+                                <i class="ion ion-ios-star tx-60 lh-0 tx-white op-7"></i>
+                                <div class="mg-l-20">
+                                    <p class="tx-15 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Seus Fãs</p>
+                                    <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">54.45%</p>
+                                    <span class="tx-14 tx-roboto tx-white-6">Seguidores que você não segue</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </a>
+
                 </div><!-- col-3 -->
                 <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
-                    <div class="bg-primary rounded overflow-hidden">
-                        <div class="pd-25 d-flex align-items-center">
-                            <i class="ion ion-ios-star tx-60 lh-0 tx-white op-7"></i>
-                            <div class="mg-l-20">
-                                <p class="tx-15 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Seus Fãs</p>
-                                <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">54.45%</p>
-                                <span class="tx-14 tx-roboto tx-white-6">Seguidores que você não segue</span>
+
+                    <a href="#">
+
+                        <div class="bg-br-primary rounded overflow-hidden">
+                            <div class="pd-25 d-flex align-items-center">
+                                <i class="ion ion-volume-low tx-60 lh-0 tx-white op-7"></i>
+                                <div class="mg-l-20">
+                                    <p class="tx-15 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Não te Seguem</p>
+                                    <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">32.16</p>
+                                    <span class="tx-14 tx-roboto tx-white-6">Apenas você as Seguem</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div><!-- col-3 -->
-                <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
-                    <div class="bg-br-primary rounded overflow-hidden">
-                        <div class="pd-25 d-flex align-items-center">
-                            <i class="ion ion-volume-low tx-60 lh-0 tx-white op-7"></i>
-                            <div class="mg-l-20">
-                                <p class="tx-15 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Não te Seguem</p>
-                                <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">32.16</p>
-                                <span class="tx-14 tx-roboto tx-white-6">Apenas você as Seguem</span>
-                            </div>
-                        </div>
-                    </div>
+
+                    </a>
+
                 </div><!-- col-3 -->
             </div><!-- row -->
 

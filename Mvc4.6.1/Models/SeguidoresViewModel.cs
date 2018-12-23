@@ -36,7 +36,7 @@ namespace MvcDemo.Models
         [DisplayName("Seguidores")]
         public int FollowersCount { get; set; }
 
-        [DisplayName("Sigo")]
+        [DisplayName("Te Seguem")]
         public bool Following { get; set; }
 
         [DisplayName("Media Liberada")]

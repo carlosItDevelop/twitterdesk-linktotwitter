@@ -1,0 +1,58 @@
+﻿
+/*===/ cas-button ========*/
+.cas-button-sgn {
+    width: 100px;
+    height: 21px;
+    padding: 5px 0px;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    color: #fff;
+    background-color: #4ab3f4;
+    border-radius: 15px;
+}
+
+.cas-button-sgn:hover {
+    width: 115px;
+    background-color: #ac002b;
+    font-stretch: expanded;
+    color: #fff;
+}
+/*===/ Trocando texto com pousar do mouse ====*/
+.hover {
+    display: none;
+}
+
+.muda:hover .normal {
+    display: none;
+}
+
+.muda:hover .hover {
+    display: block;
+}
+/*===/ fim do Trocando texto com pousar do mouse ====*/
+/*===/ fim do cas-button ========*/
+
+
+/* ================================================= */
+
+/*===/ cas-button ========*/
+.cas-button-sgr {
+    width: 100px;
+    height: 21px;
+    padding: 5px 0px;
+    border: solid 1px #1da1f2;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    color: #1da1f2;
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+    .cas-button-sgr:hover {
+        background-color: #e8f5fd;
+        color: #1da1f2;
+    }
+
+/*===/ fim do cas-button ========*/

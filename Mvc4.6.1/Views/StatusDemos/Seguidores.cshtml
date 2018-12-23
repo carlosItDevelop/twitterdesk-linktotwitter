@@ -63,11 +63,16 @@
                             @if (!item.Following)
                             {
                                 var ScreenName = @item.ScreenNameResponse;
-                                <a href="/StatusDemos/Seguir?ScreenName=@ScreenName" name=@item.ScreenNameResponse class="btn btn-outline-light">Seguir</a>
+                                <a href="/StatusDemos/Seguir?ScreenName=@ScreenName" name=@item.ScreenNameResponse class="cas-button-sgr">Seguir</a>
                             }
                             else
                             {
-                                <a href="#" class="btn btn-outline-info">Seguindo</a>
+                                @*<a href="#" class="btn btn-outline-danger btn-sm">Unfollow</a>*@
+                                <a href="#" class="cas-button-sgn muda">
+                                    <span class="normal">Seguindo</span>
+                                    <span class="hover">Deixar de seguir</span>
+                                </a>
+
                                 @*@Html.DisplayFor(modelItem => item.Following)*@
                             }
                         </td>

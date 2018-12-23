@@ -274,7 +274,25 @@ namespace MvcDemo.Controllers
 
         #endregion
 
-        #region: Seguir
+        #region: AccountEntity
+
+        [ActionName("AccountEntity")]
+        public async Task<ActionResult> AccountEntityAsync()
+        {
+            var auth = new MvcAuthorizer
+            {
+                CredentialStore = new SessionStateCredentialStore()
+            };
+            var ctx = new TwitterContext(auth);
+
+
+
+            return View();
+        }
+
+        #endregion
+
+            #region: Seguir
 
         [ActionName("Seguir")]
         public async Task<ActionResult> SeguirAsync(string ScreenName)
